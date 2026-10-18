@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -84,6 +85,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "pen",
+                    "type": "Button",
+                    "id": "88934d14-f209-4582-9e27-384a9b2d057b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 }
             ],
@@ -470,6 +480,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a9e9b5c-020d-48bc-91f4-f124b447d6c2",
+                    "path": "<Pen>/inRange",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "pen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78858f78-2958-4d55-a18e-fa4eb5bb711d",
+                    "path": "<Pen>/press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "pen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
