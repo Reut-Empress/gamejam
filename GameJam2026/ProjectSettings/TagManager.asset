@@ -42,5 +42,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Dots and Lines
+    uniqueID: 313997413
+    locked: 0
   m_RenderingLayers:
   - Default
