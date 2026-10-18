@@ -27,7 +27,6 @@ public class PenLogic : MonoBehaviour
 
     private void TeleportPenDot()
     {
-        Debug.Log($"if {pen == null || !inRange}, inRange {inRange}, pressure {pressure}, touching {touching}");
         if (pen == null || !inRange) return;
 
         Vector2 screenPosition = pen.position.ReadValue();
