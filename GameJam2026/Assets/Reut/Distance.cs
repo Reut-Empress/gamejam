@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 
 public class Distance : MonoBehaviour
 {
+    [SerializeField] private GameObject c;
+    circle cScript;
+
     [SerializeField] private SpriteRenderer[] circles;       // drag your circle sprites here
     [SerializeField] private bool findByTag = false;         // alternative: auto-find objects with the tag below
     [SerializeField] private string circleTag = "Circle";
@@ -27,6 +30,8 @@ public class Distance : MonoBehaviour
             for (int i = 0; i < found.Length; i++)
                 circles[i] = found[i].GetComponent<SpriteRenderer>();
         }
+
+        cScript = c.GetComponent<circle>();
     }
 
     private void Update()
@@ -70,7 +75,9 @@ public class Distance : MonoBehaviour
             style.normal.textColor = Color.white;
         }
 
+        //GUI.Label(new Rect(20, Screen.height - 70, 500, 60),
+        //          "Accuracy: " + Mathf.RoundToInt(Accuracy) + "%", style);
         GUI.Label(new Rect(20, Screen.height - 70, 500, 60),
-                  "Accuracy: " + Mathf.RoundToInt(Accuracy) + "%", style);
+                  "Distance: " + (int)cScript.Distance(), style);
     }
 }
