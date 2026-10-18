@@ -52,7 +52,7 @@ public class Arrow : MonoBehaviour
     public float DistanceFromArrow()
     {
         float distance = Vector3.Cross(penDot.transform.position - transform.position, transform.right).magnitude;
-        Debug.Log(distance);
+        //Debug.Log(distance);
         return distance;
     }
 }
