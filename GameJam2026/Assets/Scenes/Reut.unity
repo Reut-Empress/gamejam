@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 190821995}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.77419, y: -0.51612, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -334,10 +334,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833a49ae92099da42982a4b96d930b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Distance
+  c: {fileID: 1093479563}
+  circles: []
+  findByTag: 0
   circleTag: Circle
   falloffPixels: 300
   edgeCounts: 1
   fontSize: 36
+--- !u!1 &1093479563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1045660190756215037, guid: 4028fe1e35824494b9bc4c110ca6adb2, type: 3}
+  m_PrefabInstance: {fileID: 2319373323707295023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2319373323707295023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -352,11 +360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7014291076215581642, guid: 4028fe1e35824494b9bc4c110ca6adb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7014291076215581642, guid: 4028fe1e35824494b9bc4c110ca6adb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7014291076215581642, guid: 4028fe1e35824494b9bc4c110ca6adb2, type: 3}
       propertyPath: m_LocalPosition.z
