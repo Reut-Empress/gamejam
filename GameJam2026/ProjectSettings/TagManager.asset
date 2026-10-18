@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Circle
+  - Dot
+  - Line
   layers:
   - Default
   - TransparentFX
