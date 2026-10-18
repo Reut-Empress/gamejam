@@ -2,15 +2,55 @@ using UnityEngine;
 
 public class Dot : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private LineManager lineManager;
+    private bool isActive, isEnd;
+    //Color
+    SpriteRenderer spriteRenderer;
+
+
+    private void Awake()
     {
-        
+        //Color
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        lineManager = FindFirstObjectByType<LineManager>();
+        Deactivate();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Activate()
     {
-        
+        isActive = true;
+    }
+
+    public void Deactivate()
+    {
+        isActive = false;
+        isEnd = false;
+        spriteRenderer.color = Color.red;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (isActive)
+        {
+            if (collision.CompareTag("Pen Dot") && isEnd)
+            {
+                lineManager.UpdateDotsAndLines();
+            }
+        }
+    }
+
+    public void SetAsEnd()
+    {
+        isEnd = true;
+        spriteRenderer.color = Color.green;
+    }
+
+    public void SetAsStart()
+    {
+        isEnd = false;
+        spriteRenderer.color = Color.gold;
+
     }
 }

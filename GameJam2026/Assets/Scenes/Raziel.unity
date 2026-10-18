@@ -1135,17 +1135,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7947181512995839397, guid: 97ad3aeff197c1843a1964c8412f6902, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2152427789428932166, guid: 97ad3aeff197c1843a1964c8412f6902, type: 3}
       propertyPath: m_Name
       value: Pen Dot
       objectReference: {fileID: 0}
     - target: {fileID: 3396772481741682880, guid: 97ad3aeff197c1843a1964c8412f6902, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.23
       objectReference: {fileID: 0}
     - target: {fileID: 3396772481741682880, guid: 97ad3aeff197c1843a1964c8412f6902, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 3396772481741682880, guid: 97ad3aeff197c1843a1964c8412f6902, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1178,6 +1182,18 @@ PrefabInstance:
     - target: {fileID: 3396772481741682880, guid: 97ad3aeff197c1843a1964c8412f6902, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427571814407885021, guid: 97ad3aeff197c1843a1964c8412f6902, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997673472764305527, guid: 97ad3aeff197c1843a1964c8412f6902, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.383
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997673472764305527, guid: 97ad3aeff197c1843a1964c8412f6902, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.806
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

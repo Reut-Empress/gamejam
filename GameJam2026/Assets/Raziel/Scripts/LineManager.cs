@@ -69,26 +69,33 @@ public class LineManager : MonoBehaviour
         }
     }
     // In the future, change the visuals of the dots and lines through here.
-    private void UpdateDotsAndLines()
+    public void UpdateDotsAndLines()
     {
         if (d >= dots.Length || l >= lines.Length) return;
 
         // Updates before moving up.
         if (currentLine != null)
         {
+            currentStartDot.GetComponent<Dot>().Deactivate();
+            currentEndDot.GetComponent<Dot>().Deactivate();
             currentLine.SetActive(false);
         }
 
         // Sets the new current starting dot, moving to the next index, and updating the current end dot with the new index.
         // The index is not updated again, insuring that the new starting dot is the current end dot.
         currentStartDot = dots[d];
+        Dot startCode = currentStartDot.GetComponent<Dot>();
+        startCode.Activate();
+        startCode.SetAsStart();
+
         d++;
 
-        if (d < dots.Length)
-        currentEndDot = dots[d];
-        else
-        currentEndDot = dots[0];
+        if (d < dots.Length) currentEndDot = dots[d];
+        else currentEndDot = dots[0];
 
+        Dot endCode = currentEndDot.GetComponent<Dot>();
+        endCode.Activate();
+        endCode.SetAsEnd();
 
         // Sets the current line, and moving up the index.
         currentLine = lines[l];
