@@ -21,6 +21,7 @@ public class Arrow : MonoBehaviour
     private void Start()
     {
         Resize();
+        DistaneFromArrow();
     }
 
     private void Resize()

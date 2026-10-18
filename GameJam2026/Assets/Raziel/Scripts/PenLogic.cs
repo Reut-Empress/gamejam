@@ -31,8 +31,6 @@ public class PenLogic : MonoBehaviour
 
         Vector2 screenPosition = pen.position.ReadValue();
 
-        Debug.Log(screenPosition);
-
         penDot.transform.position = Camera.main.ScreenToWorldPoint(
             new Vector3(screenPosition.x, screenPosition.y,
             Mathf.Abs(Camera.main.transform.position.z))
