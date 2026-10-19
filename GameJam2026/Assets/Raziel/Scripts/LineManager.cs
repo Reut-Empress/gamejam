@@ -6,11 +6,14 @@ public class LineManager : MonoBehaviour
     private GameObject[] dots, lines;
     private GameObject currentStartDot, currentEndDot, currentLine;
 
+    private AVG avg;
+
     private int d, l;
     private void Awake()
     {
         dots = GameObject.FindGameObjectsWithTag("Dot");
         lines = GameObject.FindGameObjectsWithTag("Line");
+        avg = GameObject.FindGameObjectsWithTag("AVG");
 
         d = 0;
         l = 0;
@@ -118,6 +121,8 @@ public class LineManager : MonoBehaviour
 
         // Sets the current line, and moving up the index.
         currentLine = lines[l];
+        //Give current line to AVG
+        avg.SetLine(currentLine);
         l++;
         // Updates after.
         currentLine.SetActive(true);
