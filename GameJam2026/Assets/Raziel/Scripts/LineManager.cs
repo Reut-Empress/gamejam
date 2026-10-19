@@ -16,10 +16,13 @@ public class LineManager : MonoBehaviour
         l = 0;
 
         SortDotsAndLines();
-        DeactivateAllLines();
+    }
+    private void Start()
+    {
+        DeactivateAllDotsAndLines();
         UpdateDotsAndLines();
     }
-
+    // Debug
     private void Update()
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
@@ -39,15 +42,29 @@ public class LineManager : MonoBehaviour
         // For name: "Dot (x)"
         for (int i = 0; i < dots.Length; i++)
         {
-            num = int.Parse(dots[i].name.Substring(5, 1));
-            tempDots[num - 1] = dots[i];
+            if (dots[i].name.Length == 3)
+            {
+                tempDots[0] = dots[i];
+            }
+            else
+            {
+                num = int.Parse(dots[i].name.Substring(5, dots[i].name.Length - 5 - 1));
+                tempDots[num] = dots[i];
+            }
         }
 
         // For name: "Arrow (x)"
         for (int i = 0; i < lines.Length; i++)
         {
-            num = int.Parse(lines[i].name.Substring(7, 1));
-            tempLines[num - 1] = lines[i];
+            if (lines[i].name.Length == 5)
+            {
+                tempLines[0] = lines[i];
+            }
+            else
+            {
+                num = int.Parse(lines[i].name.Substring(7, lines[i].name.Length - 7 - 1));
+                tempLines[num] = lines[i];
+            }
         }
 
         for (int i = 0; i < dots.Length; i++)
@@ -60,42 +77,49 @@ public class LineManager : MonoBehaviour
             lines[i] = tempLines[i];
         }
     }
-    // Deactivates dots too eventually.
-    private void DeactivateAllLines()
+    private void DeactivateAllDotsAndLines()
     {
+        for (int i = 0; i < dots.Length;i++)
+        {
+            dots[i].GetComponent<Dot>().Deactivate();
+        }
         for (int i = 0; i < lines.Length; i++)
         {
             lines[i].SetActive(false);
         }
     }
-    // In the future, change the visuals of the dots and lines through here.
-    private void UpdateDotsAndLines()
+    public void UpdateDotsAndLines()
     {
         if (d >= dots.Length || l >= lines.Length) return;
 
         // Updates before moving up.
         if (currentLine != null)
         {
+            currentStartDot.GetComponent<Dot>().Deactivate();
+            currentEndDot.GetComponent<Dot>().Deactivate();
             currentLine.SetActive(false);
         }
 
         // Sets the new current starting dot, moving to the next index, and updating the current end dot with the new index.
         // The index is not updated again, insuring that the new starting dot is the current end dot.
         currentStartDot = dots[d];
+        Dot startCode = currentStartDot.GetComponent<Dot>();
+        startCode.Activate();
+        startCode.SetAsStart();
+
         d++;
 
-        if (d < dots.Length)
-        currentEndDot = dots[d];
-        else
-        currentEndDot = dots[0];
+        if (d < dots.Length) currentEndDot = dots[d];
+        else currentEndDot = dots[0];
 
+        Dot endCode = currentEndDot.GetComponent<Dot>();
+        endCode.Activate();
+        endCode.SetAsEnd();
 
         // Sets the current line, and moving up the index.
         currentLine = lines[l];
         l++;
-
         // Updates after.
         currentLine.SetActive(true);
     }
-
 }
