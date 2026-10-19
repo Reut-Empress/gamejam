@@ -4,18 +4,20 @@ public class Dot : MonoBehaviour
 {
     private LineManager lineManager;
     private bool isActive, isEnd;
-    //Color
-    SpriteRenderer spriteRenderer;
+    GameObject deactivatedChild, startChild, endChild;
 
 
     private void Awake()
     {
-        //Color
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
         lineManager = FindFirstObjectByType<LineManager>();
-        Deactivate();
 
+        deactivatedChild = transform.Find("Deactivated").gameObject;
+        startChild = transform.Find("Start").gameObject;
+        endChild = transform.Find("End").gameObject;
+
+        deactivatedChild.gameObject.SetActive(false);
+        startChild.gameObject.SetActive(false);
+        endChild.gameObject.SetActive(false);
     }
 
     public void Activate()
@@ -27,7 +29,7 @@ public class Dot : MonoBehaviour
     {
         isActive = false;
         isEnd = false;
-        spriteRenderer.color = Color.red;
+        ChangeActiveChild(deactivatedChild);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,13 +46,21 @@ public class Dot : MonoBehaviour
     public void SetAsEnd()
     {
         isEnd = true;
-        spriteRenderer.color = Color.green;
+        ChangeActiveChild(endChild);
     }
 
     public void SetAsStart()
     {
         isEnd = false;
-        spriteRenderer.color = Color.gold;
+        ChangeActiveChild(startChild);
+    }
 
+    private void ChangeActiveChild(GameObject activeChild)
+    {
+        deactivatedChild.gameObject.SetActive(false);
+        startChild.gameObject.SetActive(false);
+        endChild.gameObject.SetActive(false);
+
+        activeChild.gameObject.SetActive(true);
     }
 }

@@ -10,10 +10,11 @@ public class PenLogic : MonoBehaviour
     private Camera cam;
 
     private Pen pen;
-    Vector2 screenPosition;
-    Vector3 worldPosition;
+    private Vector2 screenPosition;
+    private Vector3 worldPosition;
 
-    private bool inRange, touching;
+    private bool inRange;
+    private bool touching;
     private float pressure;
     private void Awake()
     {
@@ -57,5 +58,15 @@ public class PenLogic : MonoBehaviour
         if (pen == null || !inRange) return;
 
         penDotRigidbody2D.MovePosition(targetPosition);
+    }
+
+    public bool IsTouching()
+    {
+        return touching;
+    }
+
+    public Vector3 PenPosition()
+    {
+        return targetPosition;
     }
 }
