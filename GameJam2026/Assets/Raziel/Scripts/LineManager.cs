@@ -121,7 +121,7 @@ public class LineManager : MonoBehaviour
         // Sets the current line, and moving up the index.
         currentLine = lines[l];
         //Give current line to AVG
-        avg.SetLine(currentLine);
+        if (avg != null) avg.SetLine(currentLine);
         l++;
         // Updates after.
         currentLine.SetActive(true);
