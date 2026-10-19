@@ -3,13 +3,16 @@ using UnityEngine;
 public class Dot : MonoBehaviour
 {
     private LineManager lineManager;
+    private PenLogic penLogic;
     private bool isActive, isEnd, isNextInLine, wasInLine;
     GameObject redChild, goldChild, greenChild, activeChild;
+    [SerializeField] private float minimumPressure, maximumPressure;
 
 
     private void Awake()
     {
         lineManager = FindFirstObjectByType<LineManager>();
+        penLogic = FindFirstObjectByType<PenLogic>();
 
         redChild = transform.Find("Red").gameObject;
         goldChild = transform.Find("Gold").gameObject;
@@ -48,7 +51,25 @@ public class Dot : MonoBehaviour
     {
         if (isActive)
         {
-            if (collision.CompareTag("Pen Dot"))
+            if (collision.CompareTag("Pen Dot") && PressureInRange())
+            {
+                if (isEnd && isNextInLine)
+                {
+                    lineManager.UpdateDotsAndLines();
+                }
+                if (isNextInLine)
+                {
+                    MoveUpTheLine();
+                }
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (isActive)
+        {
+            if (collision.CompareTag("Pen Dot") && PressureInRange())
             {
                 if (isEnd && isNextInLine)
                 {
@@ -102,5 +123,14 @@ public class Dot : MonoBehaviour
         wasInLine = true;
         ChangeActiveChild(greenChild);
         lineManager.SetNextDotAsNext();
+    }
+
+    private bool PressureInRange()
+    {
+        if (penLogic.Pressure() >= minimumPressure && penLogic.Pressure() <= maximumPressure)
+        {
+            return true;
+        }
+        return false;
     }
 }

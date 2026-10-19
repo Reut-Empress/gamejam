@@ -5,6 +5,7 @@ public class PenLogic : MonoBehaviour
 {
     [SerializeField] private GameObject penDot;
     private Rigidbody2D penDotRigidbody2D;
+    private CircleCollider2D penDotCircleCollider2D;
     private Vector3 targetPosition;
 
     private Camera cam;
@@ -19,6 +20,7 @@ public class PenLogic : MonoBehaviour
     private void Awake()
     {
         penDotRigidbody2D = penDot.GetComponent<Rigidbody2D>();
+        penDotCircleCollider2D = penDot.GetComponent<CircleCollider2D>();
         cam = Camera.main;
     }
 
@@ -30,6 +32,7 @@ public class PenLogic : MonoBehaviour
     private void FixedUpdate()
     {
         TeleportPenDot();
+        UpdatePenDotCollider();
     }
 
     private void UpdatePen()
@@ -68,5 +71,20 @@ public class PenLogic : MonoBehaviour
     public Vector3 PenPosition()
     {
         return targetPosition;
+    }
+    public float Pressure()
+    {
+        return pressure;
+    }
+    private void UpdatePenDotCollider()
+    {
+        if (IsTouching())
+        {
+            penDotCircleCollider2D.enabled = true;
+        }
+        else
+        {
+            penDotCircleCollider2D.enabled = false;
+        }
     }
 }
