@@ -21,6 +21,7 @@ public class AVG : MonoBehaviour
 
         if (penLogic.IsTouching() == true)
         {
+            if (lineScript != null)
             sum += lineScript.DistanceFromArrow();
             num++;
 
