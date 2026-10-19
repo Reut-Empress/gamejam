@@ -354,6 +354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d14c9530fec1c448d922e9dc0439d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dot
+  minimumPressure: 0
+  maximumPressure: 1
 --- !u!1 &7787489758459070480
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,8 +51,6 @@ public class Arrow : MonoBehaviour
 
         float distance = Vector3.Cross(dir, toPen).magnitude;
 
-        Debug.Log($"e: {endPointPosition}, s: {startPointPosition}, tp {transform.position}, pd {penDot.position}.");
-
         return distance;
 
         /*

@@ -7,6 +7,7 @@ public class LineManager : MonoBehaviour
     private GameObject currentStartDot, currentEndDot, currentLine;
 
     private AVG avg;
+    private PrintInfo printInfo;
     private int d, l;
 
     private Dot startCode, endCode;
@@ -15,6 +16,7 @@ public class LineManager : MonoBehaviour
         dots = GameObject.FindGameObjectsWithTag("Dot");
         lines = GameObject.FindGameObjectsWithTag("Line");
         avg = FindAnyObjectByType<AVG>();
+        printInfo = FindAnyObjectByType<PrintInfo>();
 
         d = 0;
         l = 0;
@@ -120,8 +122,9 @@ public class LineManager : MonoBehaviour
 
         // Sets the current line, and moving up the index.
         currentLine = lines[l];
-        //Give current line to AVG
+        //Give current line to AVG and PrintInfo
         if (avg != null) avg.SetLine(currentLine);
+        if (printInfo != null) printInfo.SetLine(currentLine.GetComponent<Arrow>());
         l++;
         // Updates after.
         currentLine.SetActive(true);
