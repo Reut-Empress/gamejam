@@ -7,13 +7,12 @@ public class LineManager : MonoBehaviour
     private GameObject currentStartDot, currentEndDot, currentLine;
 
     private AVG avg;
-
     private int d, l;
     private void Awake()
     {
         dots = GameObject.FindGameObjectsWithTag("Dot");
         lines = GameObject.FindGameObjectsWithTag("Line");
-        avg = GameObject.FindGameObjectsWithTag("AVG");
+        avg = FindAnyObjectByType<AVG>();
 
         d = 0;
         l = 0;
