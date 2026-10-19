@@ -8,6 +8,8 @@ public class LineManager : MonoBehaviour
 
     private AVG avg;
     private int d, l;
+
+    private Dot startCode, endCode;
     private void Awake()
     {
         dots = GameObject.FindGameObjectsWithTag("Dot");
@@ -23,14 +25,6 @@ public class LineManager : MonoBehaviour
     {
         DeactivateAllDotsAndLines();
         UpdateDotsAndLines();
-    }
-    // Debug
-    private void Update()
-    {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            UpdateDotsAndLines();
-        }
     }
 
     // Names must be with parentheses, eg "Dot (0)" and not "Dot".
@@ -92,7 +86,13 @@ public class LineManager : MonoBehaviour
     }
     public void UpdateDotsAndLines()
     {
-        if (d >= dots.Length || l >= lines.Length) return;
+        if (d >= dots.Length || l >= lines.Length)
+        {
+            currentStartDot.GetComponent<Dot>().Deactivate();
+            currentEndDot.GetComponent<Dot>().Deactivate();
+            currentLine.SetActive(false);
+            return;
+        }
 
         // Updates before moving up.
         if (currentLine != null)
@@ -105,7 +105,7 @@ public class LineManager : MonoBehaviour
         // Sets the new current starting dot, moving to the next index, and updating the current end dot with the new index.
         // The index is not updated again, insuring that the new starting dot is the current end dot.
         currentStartDot = dots[d];
-        Dot startCode = currentStartDot.GetComponent<Dot>();
+        startCode = currentStartDot.GetComponent<Dot>();
         startCode.Activate();
         startCode.SetAsStart();
 
@@ -114,7 +114,7 @@ public class LineManager : MonoBehaviour
         if (d < dots.Length) currentEndDot = dots[d];
         else currentEndDot = dots[0];
 
-        Dot endCode = currentEndDot.GetComponent<Dot>();
+        endCode = currentEndDot.GetComponent<Dot>();
         endCode.Activate();
         endCode.SetAsEnd();
 
@@ -125,5 +125,10 @@ public class LineManager : MonoBehaviour
         l++;
         // Updates after.
         currentLine.SetActive(true);
+    }
+
+    public void SetNextDotAsNext()
+    {
+        endCode.SetIsNextInLine(true);
     }
 }
