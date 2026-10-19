@@ -7,7 +7,7 @@ public class Arrow : MonoBehaviour
     [SerializeField] private GameObject startPoint;
     [SerializeField] private GameObject endPoint;
 
-    [SerializeField] private GameObject penDot;
+    [SerializeField] private Transform penDot;
 
     private Vector3 startPointPosition;
     private Vector3 endPointPosition;
@@ -21,11 +21,6 @@ public class Arrow : MonoBehaviour
     private void Start()
     {
         Resize();
-    }
-
-    private void Update()
-    {
-        DistanceFromArrow();
     }
 
     private void Resize()
@@ -51,8 +46,24 @@ public class Arrow : MonoBehaviour
 
     public float DistanceFromArrow()
     {
-        float distance = Vector3.Cross(penDot.transform.position - transform.position, transform.right).magnitude;
-        //Debug.Log(distance);
+        Vector3 dir = (endPointPosition - startPointPosition).normalized;
+        Vector3 toPen = penDot.position - transform.position;
+
+        float distance = Vector3.Cross(dir, toPen).magnitude;
+
+        Debug.Log($"e: {endPointPosition}, s: {startPointPosition}, tp {transform.position}, pd {penDot.position}.");
+
         return distance;
+
+        /*
+        //float distance = Vector3.Cross(penDot.transform.position - transform.position, transform.right).magnitude; 
+        Vector3 a = (endPointPosition - startPointPosition).normalized;
+        Vector3 b = (penDot.transform.position - transform.position).normalized;
+
+        float distance = b.magnitude * MathF.Sin(Vector3.Angle(a,b)) * Mathf.Rad2Deg;
+
+        Debug.Log("Distance " + distance);
+        return distance;
+        */
     }
 }

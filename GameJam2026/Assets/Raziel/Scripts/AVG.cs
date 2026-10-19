@@ -7,11 +7,29 @@ public class AVG : MonoBehaviour
     GameObject line;
     float sum;
     int num;
+   //float m = 0;
+
     Arrow lineScript;
+    PenLogic penLogic;
+    private void Awake()
+    {
+        penLogic = FindAnyObjectByType<PenLogic>();
+    }
     void Update()
     {
-        num++;
-        sum += lineScript.DistanceFromArrow();
+        
+
+        if (penLogic.IsTouching() == true)
+        {
+            sum += lineScript.DistanceFromArrow();
+            num++;
+
+            Debug.Log(CalculateAverage());
+        }
+        
+
+        
+        //m = Mathf.Max(num,m);
     }
     public void SetLine(GameObject l)
     {
@@ -22,5 +40,4 @@ public class AVG : MonoBehaviour
     {
         return sum / num; 
     }
-
 }
